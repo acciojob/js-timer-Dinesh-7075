@@ -1,14 +1,30 @@
-const players = ["John", "Bob", "Alice", "Poppy"];
+var timer = document.getElementById("timer");
+function currentTime() {
+  let date = new Date(); 
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+  let currentDate = `${month}/${day}/${year}`;
+  let hh = date.getHours();
+  let mm = date.getMinutes();
+  let ss = date.getSeconds();
+  let session = "AM";
 
-const person = {
-  name: "John Doe",
-  age: 80,
-};
+  if(hh == 0){
+      hh = 12;
+  }
+  if(hh > 12){
+      hh = hh - 12;
+      session = "PM";
+   }
 
-// Write your code here, make sure the name of variables is exactly same as mentioned in the problem statement
+   hh = (hh < 10) ? "0" + hh : hh;
+   mm = (mm < 10) ? "0" + mm : mm;
+   ss = (ss < 10) ? "0" + ss : ss;
+    
+   let time = currentDate + ", " + hh + ":" + mm + ":" + ss + " " + session;
 
-window.players = players;
-window.person = person;
-window.team = team;
-window.team1 = team1;
-window.cap1 = cap1;
+  timer.innerText = time; 
+  let t = setTimeout(function(){ currentTime() }, 1000);
+}
+currentTime();
